@@ -3,6 +3,7 @@ module Views exposing (..)
 import Models exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Msgs exposing (..)
 
 
@@ -10,19 +11,38 @@ view : Model -> Html Msg
 view model =
     div []
         [ h1 [] [ text "Quizboard" ]
-        , div [] [ navbar ]
+        , div [] [ navbar model ]
         , div [ class "resultList" ] [ results model.teams ]
         ]
 
 
-navbar : Html Msg
-navbar =
-    div [] [ addTeamButton ]
+navbar : Model -> Html Msg
+navbar model =
+    div [] [ addTeam model ]
+
+
+addTeam : Model -> Html Msg
+addTeam model =
+    div []
+        [ addTeamButton
+        , if model.showAddTeamField then
+            addTeamInputField
+          else
+            div [] []
+        ]
 
 
 addTeamButton : Html Msg
 addTeamButton =
-    div [] []
+    div [ onClick Msgs.ToggleAddTeamField ] [ text "Add team" ]
+
+
+addTeamInputField : Html Msg
+addTeamInputField =
+    div []
+        [ input [ onInput Msgs.AddTeam ] []
+        , div [ onClick Msgs.SaveTeam ] [ text "Save team" ]
+        ]
 
 
 results : List Team -> Html Msg
