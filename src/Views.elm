@@ -10,8 +10,9 @@ import Msgs exposing (..)
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "Quizboard" ]
-        , div [] [ navbar model ]
+        [ h1 [ class "header" ] [ text "Quizboard" ]
+        , div [ class "navbar" ] [ navbar model ]
+        , div [ class "configbar " ] [ configbar model ]
         , div [ class "resultList" ] [ results model.teams ]
         ]
 
@@ -26,7 +27,13 @@ addTeam model =
     div []
         [ addTeamButton
         , addScoreButton
-        , if model.showAddTeamField then
+        ]
+
+
+configbar : Model -> Html Msg
+configbar model =
+    div [ class "configbar" ]
+        [ if model.showAddTeamField then
             addTeamInputField
           else
             div [] []
@@ -39,19 +46,19 @@ addTeam model =
 
 addTeamButton : Html Msg
 addTeamButton =
-    div [ onClick Msgs.ToggleAddTeamField ] [ text "Add team" ]
+    div [ onClick Msgs.ToggleAddTeamField, class "navButton" ] [ text "Add team" ]
 
 
 addScoreButton : Html Msg
 addScoreButton =
-    div [ onClick Msgs.ToggleAddScoreButton ] [ text "Add score" ]
+    div [ onClick Msgs.ToggleAddScoreButton, class "navButton" ] [ text "Add score" ]
 
 
 addTeamInputField : Html Msg
 addTeamInputField =
     div []
         [ input [ onInput Msgs.AddTeam ] []
-        , div [ onClick Msgs.SaveTeam ] [ text "Save team" ]
+        , div [ onClick Msgs.SaveTeam, class "button" ] [ text "Save team" ]
         ]
 
 
@@ -71,11 +78,11 @@ results teams =
 
 teamBox : Team -> Html Msg
 teamBox team =
-    div []
+    div [ class "teambox" ]
         [ h2 [] [ text team.name ]
         , div [] [ scoreList team.scores ]
-        , div [] [text "Total: ", totalScore team.scores ]
-        , div [] [text "Average: ", averageScore team.scores ]
+        , div [] [ text "Total: ", totalScore team.scores ]
+        , div [] [ text "Average: ", averageScore team.scores ]
         ]
 
 
@@ -88,20 +95,22 @@ resultLine : ScoreRecord -> Html Msg
 resultLine scores =
     li [] [ text (toString scores.score) ]
 
+
 averageScore : List ScoreRecord -> Html Msg
-averageScore scores = 
+averageScore scores =
     scores
-    |> List.map .score
-    |> List.sum
-    |> toFloat
-    |> (\a -> a/(toFloat (List.length scores)))
-    |> toString
-    |> text
+        |> List.map .score
+        |> List.sum
+        |> toFloat
+        |> (\a -> a / (toFloat (List.length scores)))
+        |> toString
+        |> text
+
 
 totalScore : List ScoreRecord -> Html Msg
 totalScore scores =
     scores
-    |> List.map .score
-    |> List.sum
-    |> toString
-    |> text
+        |> List.map .score
+        |> List.sum
+        |> toString
+        |> text
