@@ -25,8 +25,13 @@ addTeam : Model -> Html Msg
 addTeam model =
     div []
         [ addTeamButton
+        , addScoreButton
         , if model.showAddTeamField then
             addTeamInputField
+          else
+            div [] []
+        , if model.showAddScore then
+            addScoreField
           else
             div [] []
         ]
@@ -37,12 +42,22 @@ addTeamButton =
     div [ onClick Msgs.ToggleAddTeamField ] [ text "Add team" ]
 
 
+addScoreButton : Html Msg
+addScoreButton =
+    div [ onClick Msgs.ToggleAddScoreButton ] [ text "Add score" ]
+
+
 addTeamInputField : Html Msg
 addTeamInputField =
     div []
         [ input [ onInput Msgs.AddTeam ] []
         , div [ onClick Msgs.SaveTeam ] [ text "Save team" ]
         ]
+
+
+addScoreField : Html Msg
+addScoreField =
+    div [] [ text "Add score field, choose team and score 1-10" ]
 
 
 results : List Team -> Html Msg

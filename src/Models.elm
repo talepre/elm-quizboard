@@ -3,12 +3,13 @@ module Models exposing (..)
 
 initialModel : Model
 initialModel =
-    { teams = [], showAddTeamField = False, tempNewTeam = "" }
+    { teams = [], showAddTeamField = False, showAddScore = False, tempNewTeam = "" }
 
 
 type alias Model =
     { teams : List Team
     , showAddTeamField : Bool
+    , showAddScore : Bool
     , tempNewTeam : String
     }
 

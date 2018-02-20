@@ -6,6 +6,7 @@ import Models exposing (..)
 type Msg
     = NoOp
     | ToggleAddTeamField
+    | ToggleAddScoreButton
     | AddTeam String
     | SaveTeam
 
@@ -22,6 +23,13 @@ update msg model =
                     not model.showAddTeamField
             in
                 ( { model | showAddTeamField = toggled }, Cmd.none )
+
+        ToggleAddScoreButton ->
+            let
+                toggled =
+                    not model.showAddScore
+            in
+                ( { model | showAddScore = toggled }, Cmd.none )
 
         AddTeam teamName ->
             ( { model | tempNewTeam = teamName }, Cmd.none )
