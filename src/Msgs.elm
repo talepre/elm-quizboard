@@ -9,6 +9,9 @@ type Msg
     | ToggleAddScoreButton
     | AddTeam String
     | SaveTeam
+    | TeamForScoreChosen Team
+    | NewChosenScore Int
+    | SaveScore
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -43,6 +46,43 @@ update msg model =
                     newTeam :: model.teams
             in
                 ( { model | teams = newTeams, showAddTeamField = False }, Cmd.none )
+
+        TeamForScoreChosen team ->
+            ( { model | teamChosenForScore = Just team }, Cmd.none )
+
+        NewChosenScore score ->
+            ( { model | newChosenScore = Just score }, Cmd.none )
+
+        SaveScore ->
+            case model.teamChosenForScore of
+                Just chosenTeam ->
+                    case model.newChosenScore of
+                        Just chosenScore ->
+                            let
+                                updatedTeams =
+                                    List.map
+                                        (\team ->
+                                            if team.name == chosenTeam.name then
+                                                { team | scores = ({ date = "DATE", score = chosenScore } :: team.scores) }
+                                            else
+                                                team
+                                        )
+                                        model.teams
+                            in
+                                ( { model
+                                    | newChosenScore = Nothing
+                                    , teamChosenForScore = Nothing
+                                    , showAddScore = False
+                                    , teams = updatedTeams
+                                  }
+                                , Cmd.none
+                                )
+
+                        Nothing ->
+                            ( model, Cmd.none )
+
+                Nothing ->
+                    ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg

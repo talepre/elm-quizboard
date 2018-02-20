@@ -22,6 +22,8 @@ initialModel =
     , showAddTeamField = False
     , showAddScore = False
     , tempNewTeam = ""
+    , teamChosenForScore = Nothing
+    , newChosenScore = Nothing
     }
 
 
@@ -30,6 +32,8 @@ type alias Model =
     , showAddTeamField : Bool
     , showAddScore : Bool
     , tempNewTeam : String
+    , teamChosenForScore : Maybe Team
+    , newChosenScore : Maybe Score
     }
 
 

@@ -72,17 +72,52 @@ addTeamInputField =
 
 addScoreField : Model -> Html Msg
 addScoreField model =
-    div [] [ chooseTeamForScore model.teams ]
+    div []
+        [ chooseTeamForScore model
+        , chooseScore model.newChosenScore
+        , saveScoreButton
+        ]
 
 
-chooseTeamForScore : List Team -> Html Msg
-chooseTeamForScore teams =
-    div [] (List.map teamButton teams)
+chooseTeamForScore : Model -> Html Msg
+chooseTeamForScore model =
+    div [] (List.map (teamButton model.teamChosenForScore) model.teams)
 
 
-teamButton : Team -> Html Msg
-teamButton team =
-    div [ class "button" ] [ text team.name ]
+teamButton : Maybe Team -> Team -> Html Msg
+teamButton maybeChosenTeam team =
+    case maybeChosenTeam of
+        Just chosenTeam ->
+            if (chosenTeam.name == team.name) then
+                div [ class "chosenButton", onClick (Msgs.TeamForScoreChosen team) ] [ text team.name ]
+            else
+                div [ class "button", onClick (Msgs.TeamForScoreChosen team) ] [ text team.name ]
+
+        Nothing ->
+            div [ class "button", onClick (Msgs.TeamForScoreChosen team) ] [ text team.name ]
+
+
+chooseScore : Maybe Score -> Html Msg
+chooseScore maybeChosenScore =
+    div [] (List.map (scoreButton maybeChosenScore) [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ])
+
+
+scoreButton : Maybe Score -> Score -> Html Msg
+scoreButton maybeChosenScore score =
+    case maybeChosenScore of
+        Just chosenScore ->
+            if (score == chosenScore) then
+                div [ class "chosenButton", onClick (Msgs.NewChosenScore score) ] [ text (toString score) ]
+            else
+                div [ class "button", onClick (Msgs.NewChosenScore score) ] [ text (toString score) ]
+
+        Nothing ->
+            div [ class "button", onClick (Msgs.NewChosenScore score) ] [ text (toString score) ]
+
+
+saveScoreButton : Html Msg
+saveScoreButton =
+    div [ class "button", onClick (Msgs.SaveScore) ] [ text "Save" ]
 
 
 
