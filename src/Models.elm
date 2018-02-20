@@ -3,7 +3,19 @@ module Models exposing (..)
 
 initialModel : Model
 initialModel =
-    { teams = [], showAddTeamField = False, showAddScore = False, tempNewTeam = "" }
+    { teams =
+        [ { name = "Team 1"
+          , scores =
+                [ { date = "DATO", score = 2 }
+                , { date = "DATO", score = 3 }
+                , { date = "DATO", score = 4 }
+                ]
+          }
+        ]
+    , showAddTeamField = False
+    , showAddScore = False
+    , tempNewTeam = ""
+    }
 
 
 type alias Model =
@@ -17,8 +29,6 @@ type alias Model =
 type alias Team =
     { name : String
     , scores : List ScoreRecord
-    , average : Score
-    , total : Score
     }
 
 

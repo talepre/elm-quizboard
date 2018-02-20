@@ -37,7 +37,7 @@ update msg model =
         SaveTeam ->
             let
                 newTeam =
-                    Team model.tempNewTeam [] 0 0
+                    Team model.tempNewTeam []
 
                 newTeams =
                     newTeam :: model.teams

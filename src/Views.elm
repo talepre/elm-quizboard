@@ -74,7 +74,8 @@ teamBox team =
     div []
         [ h2 [] [ text team.name ]
         , div [] [ scoreList team.scores ]
-        , div [] [ totalScore team.total ]
+        , div [] [text "Total: ", totalScore team.scores ]
+        , div [] [text "Average: ", averageScore team.scores ]
         ]
 
 
@@ -87,7 +88,20 @@ resultLine : ScoreRecord -> Html Msg
 resultLine scores =
     li [] [ text (toString scores.score) ]
 
+averageScore : List ScoreRecord -> Html Msg
+averageScore scores = 
+    scores
+    |> List.map .score
+    |> List.sum
+    |> toFloat
+    |> (\a -> a/(toFloat (List.length scores)))
+    |> toString
+    |> text
 
-totalScore : Score -> Html Msg
-totalScore score =
-    div [] [ text (toString (score)) ]
+totalScore : List ScoreRecord -> Html Msg
+totalScore scores =
+    scores
+    |> List.map .score
+    |> List.sum
+    |> toString
+    |> text
