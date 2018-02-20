@@ -17,6 +17,10 @@ view model =
         ]
 
 
+
+--- NAVBAR
+
+
 navbar : Model -> Html Msg
 navbar model =
     div [] [ addTeam model ]
@@ -30,20 +34,6 @@ addTeam model =
         ]
 
 
-configbar : Model -> Html Msg
-configbar model =
-    div [ class "configbar" ]
-        [ if model.showAddTeamField then
-            addTeamInputField
-          else
-            div [] []
-        , if model.showAddScore then
-            addScoreField
-          else
-            div [] []
-        ]
-
-
 addTeamButton : Html Msg
 addTeamButton =
     div [ onClick Msgs.ToggleAddTeamField, class "navButton" ] [ text "Add team" ]
@@ -54,6 +44,24 @@ addScoreButton =
     div [ onClick Msgs.ToggleAddScoreButton, class "navButton" ] [ text "Add score" ]
 
 
+
+--- CONFIGBAR
+
+
+configbar : Model -> Html Msg
+configbar model =
+    div [ class "configbar" ]
+        [ if model.showAddTeamField then
+            addTeamInputField
+          else
+            div [] []
+        , if model.showAddScore then
+            addScoreField model
+          else
+            div [] []
+        ]
+
+
 addTeamInputField : Html Msg
 addTeamInputField =
     div []
@@ -62,18 +70,28 @@ addTeamInputField =
         ]
 
 
-addScoreField : Html Msg
-addScoreField =
-    div [] [ text "Add score field, choose team and score 1-10" ]
+addScoreField : Model -> Html Msg
+addScoreField model =
+    div [] [ chooseTeamForScore model.teams ]
+
+
+chooseTeamForScore : List Team -> Html Msg
+chooseTeamForScore teams =
+    div [] (List.map teamButton teams)
+
+
+teamButton : Team -> Html Msg
+teamButton team =
+    div [ class "button" ] [ text team.name ]
+
+
+
+--- TEAM BOXES
 
 
 results : List Team -> Html Msg
 results teams =
     div [] (List.map teamBox teams)
-
-
-
--- TODO: Rename this function
 
 
 teamBox : Team -> Html Msg

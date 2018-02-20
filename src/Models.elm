@@ -11,6 +11,13 @@ initialModel =
                 , { date = "DATO", score = 4 }
                 ]
           }
+        , { name = "Team 5"
+          , scores =
+                [ { date = "DATO", score = 4 }
+                , { date = "DATO", score = 5 }
+                , { date = "DATO", score = 6 }
+                ]
+          }
         ]
     , showAddTeamField = False
     , showAddScore = False
