@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #3E3E3E;
   text-align: center;
 }
 
@@ -7,12 +7,42 @@ ul {
   list-style-type: none;
 }
 
-.header {
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  margin: 5px;
+  color: #313131;
 }
 
-.navbar {
+.currentWinnerBox {
+  grid-column: span 4;
 }
 
+.accumulatedScoreBox {
+  grid-column: span 4;
+}
+
+.houseRulesBox {
+  grid-column: span 4;
+}
+
+.resultListBoxes {
+  display: subgrid;
+  grid-column: span 8;
+}
+
+.teamBox {
+  grid-column: span 4;
+}
+
+.box {
+  margin: 5px;
+  padding: 5px;
+  background: #A1D044;
+}
+
+/*
 .navButton {
   text-decoration: underline;
   display: inline-block;
@@ -35,12 +65,12 @@ ul {
   text-align: center;
   padding: 10px;
   margin: 5px;
-}
+}*/
 
-.teambox {
+/* .tempbox {
   border: 1px solid;
   border-color: black;
   display: inline-block;
   margin: 5px;
   padding: 10px;
-}
+} */

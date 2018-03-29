@@ -9,11 +9,11 @@ import Msgs exposing (..)
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ h1 [ class "header" ] [ text "Quizboard" ]
-        , div [ class "navbar" ] [ navbar model ]
-        , div [ class "configbar " ] [ configbar model ]
-        , div [ class "resultList" ] [ results model.teams ]
+    div [ class "wrapper" ]
+        [ div [ class "currentWinnerBox box" ] [ currentWinner "HC Team 5" ]
+        , div [ class "resultListBoxes" ] [ results model.teams ]
+        , div [ class "accumulatedScoreBox box" ] [ accumulatedScores model.teams ]
+        , div [ class "houseRulesBox box" ] [ houseRules [ "Quiz spilles hver ordinære arbeidsdag, i.e. dager man må ta seg fri", "Man må svare samme dag", "Alle må levere svar riktig dag", "Man må gi nøyaktige svar, ingen intervall" ] ]
         ]
 
 
@@ -121,6 +121,43 @@ saveScoreButton =
 
 
 
+--- CURRENT WINNER
+
+
+currentWinner : String -> Html Msg
+currentWinner teamName =
+    div [] [ text teamName ]
+
+
+
+--- ACCUMULATED SCORES
+
+
+accumulatedScores : List Team -> Html Msg
+accumulatedScores teams =
+    div [] (List.map accumulatedScoreLine teams)
+
+
+accumulatedScoreLine : Team -> Html Msg
+accumulatedScoreLine team =
+    div [] [ text team.name, text ": ", averageScore team.scores ]
+
+
+
+--- HOUSE RULES
+
+
+houseRules : List String -> Html Msg
+houseRules rules =
+    div [] (List.map ruleLine rules)
+
+
+ruleLine : String -> Html Msg
+ruleLine rule =
+    div [] [ text rule ]
+
+
+
 --- TEAM BOXES
 
 
@@ -131,7 +168,7 @@ results teams =
 
 teamBox : Team -> Html Msg
 teamBox team =
-    div [ class "teambox" ]
+    div [ class "teamBox box" ]
         [ h2 [] [ text team.name ]
         , div [] [ scoreList team.scores ]
         , div [] [ text "Total: ", totalScore team.scores ]
