@@ -1,6 +1,24 @@
+:root {
+    --light-grey: #E8E8E8;
+    --pink: #e82063;
+    --dark-pink: #cc1d57;
+    --blue: #00bed4;
+    --dark-blue: #00a5b8;
+    --lime-green: #8ac24a;
+    --dark-lime-green: #79ab41;
+    --yellow: #ff9a03;
+    --dark-yellow: #de8500;
+    --sea-green: #009685;
+    --white: #ffffff;
+    --dark-grey: #303030;
+    --black: #111;
+    --grey-type: #666;
+}
+
 body {
-  background-color: #3E3E3E;
+  background-color: var(--dark-grey);
   text-align: center;
+  color: #ffffff;
 }
 
 ul {
@@ -12,19 +30,21 @@ ul {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   margin: 5px;
-  color: #313131;
 }
 
 .currentWinnerBox {
   grid-column: span 4;
+  background-color: var(--sea-green);
 }
 
 .accumulatedScoreBox {
   grid-column: span 4;
+  background-color: var(--pink);
 }
 
 .houseRulesBox {
   grid-column: span 4;
+  background-color: var(--blue);
 }
 
 .resultListBoxes {
@@ -34,12 +54,13 @@ ul {
 
 .teamBox {
   grid-column: span 4;
+  background-color: var(--lime-green);
 }
 
 .box {
   margin: 5px;
   padding: 5px;
-  background: #A1D044;
+  /*background: #A1D044;*/
 }
 
 /*
