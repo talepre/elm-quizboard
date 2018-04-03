@@ -19,26 +19,28 @@ ul {
   grid-column: span 4;
 }
 
-.header{
-display: block;
-margin: 0;
-padding: 15px 0px 15px 0px;
-
+.resultListBoxes {
+  grid-column: span 8;
 }
 
-.resultListBoxes {
-  display: subgrid;
-  grid-column: span 8;
+.header {
+  display: block;
+  margin: 0;
+  padding: 10px 0px 10px 0px;
+}
+
+.box-content {
+  padding: 10px 10px 10px 10px;
+}
+
+.box {
+  margin: 5px;
 }
 
 .lists {
   text-align: left;
 }
 
-.box {
-  margin: 5px;
-  /*background: #A1D044;*/
-}
 
 /* COLORS */
 
