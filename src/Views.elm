@@ -9,12 +9,12 @@ import Msgs exposing (..)
 view : Model -> Html Msg
 view model =
     div [ class "wrapper" ]
-        [ div [ class "currentWinnerBox box" ] [ currentWinner "HC Team 5" ]
-
-        --, div [ class "resultListBoxes" ] [ results model.teams ]
+        [ div [ class "left-col" ]
+            [ div [ class "bg-pink box" ] [ accumulatedScoresHeader, accumulatedScores model.teams ]
+            , div [ class "bg-limegreen box" ] [ currentWinnerHeader, currentWinner "HC Team 5" ]
+            , div [ class "bg-blue box" ] [ houseRulesHeader, houseRules model.houseRules ]
+            ]
         , div [ class "resultListBoxes" ] (List.map teamBox model.teams)
-        , div [ class "accumulatedScoreBox box" ] [ accumulatedScores model.teams ]
-        , div [ class "houseRulesBox box" ] [ houseRules [ "Quiz spilles hver ordinære arbeidsdag, i.e. dager man må ta seg fri", "Man må svare samme dag", "Alle må levere svar riktig dag", "Man må gi nøyaktige svar, ingen intervall" ] ]
         ]
 
 
@@ -22,37 +22,52 @@ view model =
 --- CURRENT WINNER
 
 
+currentWinnerHeader : Html Msg
+currentWinnerHeader =
+    h1 [ class "bg-dark-limegreen header" ] [ text "Forrige måneds vinner" ]
+
+
 currentWinner : String -> Html Msg
 currentWinner teamName =
-    h1 [] [ text teamName ]
+    div [] [ text teamName ]
 
 
 
 --- ACCUMULATED SCORES
 
 
+accumulatedScoresHeader : Html Msg
+accumulatedScoresHeader =
+    h1 [ class "bg-dark-pink header" ] [ text "Stilling" ]
+
+
 accumulatedScores : List Team -> Html Msg
 accumulatedScores teams =
-    div [] (List.map accumulatedScoreLine teams)
+    ol [] (List.map accumulatedScoreLine teams)
 
 
 accumulatedScoreLine : Team -> Html Msg
 accumulatedScoreLine team =
-    div [] [ text team.name, text ": ", averageScore team.scores ]
+    li [ class "lists" ] [ text team.name, text ": ", averageScore team.scores ]
 
 
 
 --- HOUSE RULES
 
 
+houseRulesHeader : Html Msg
+houseRulesHeader =
+    h1 [ class "bg-dark-blue header" ] [ text "Husregler" ]
+
+
 houseRules : List String -> Html Msg
 houseRules rules =
-    div [] (List.map ruleLine rules)
+    ol [] (List.map ruleLine rules)
 
 
 ruleLine : String -> Html Msg
 ruleLine rule =
-    div [] [ text rule ]
+    li [ class "lists" ] [ text rule ]
 
 
 
@@ -66,8 +81,8 @@ results teams =
 
 teamBox : Team -> Html Msg
 teamBox team =
-    div [ class "teamBox box" ]
-        [ h2 [] [ text team.name ]
+    div [ class "bg-sea-green box" ]
+        [ h1 [ class "header bg-dark-sea-green" ] [ text team.name ]
         , div [] [ scoreList team.scores ]
         , div [] [ text "Total: ", totalScore team.scores ]
         , div [] [ text "Average: ", averageScore team.scores ]

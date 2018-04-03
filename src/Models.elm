@@ -24,6 +24,7 @@ initialModel =
     , tempNewTeam = ""
     , teamChosenForScore = Nothing
     , newChosenScore = Nothing
+    , houseRules = [ "Quiz spilles hver ordinære arbeidsdag, i.e. dager man må ta seg fri", "Man må svare samme dag", "Alle må levere svar riktig dag", "Man må gi nøyaktige svar, ingen intervall" ]
     }
 
 
@@ -34,6 +35,7 @@ type alias Model =
     , tempNewTeam : String
     , teamChosenForScore : Maybe Team
     , newChosenScore : Maybe Score
+    , houseRules : List Rule
     }
 
 
@@ -54,4 +56,8 @@ type alias Score =
 
 
 type alias Date =
+    String
+
+
+type alias Rule =
     String

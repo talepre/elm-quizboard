@@ -1,20 +1,3 @@
-:root {
-    --light-grey: #E8E8E8;
-    --pink: #e82063;
-    --dark-pink: #cc1d57;
-    --blue: #00bed4;
-    --dark-blue: #00a5b8;
-    --lime-green: #8ac24a;
-    --dark-lime-green: #79ab41;
-    --yellow: #ff9a03;
-    --dark-yellow: #de8500;
-    --sea-green: #009685;
-    --white: #ffffff;
-    --dark-grey: #303030;
-    --black: #111;
-    --grey-type: #666;
-}
-
 body {
   background-color: var(--dark-grey);
   text-align: center;
@@ -32,19 +15,15 @@ ul {
   margin: 5px;
 }
 
-.currentWinnerBox {
+.left-col {
   grid-column: span 4;
-  background-color: var(--sea-green);
 }
 
-.accumulatedScoreBox {
-  grid-column: span 4;
-  background-color: var(--pink);
-}
+.header{
+display: block;
+margin: 0;
+padding: 15px 0px 15px 0px;
 
-.houseRulesBox {
-  grid-column: span 4;
-  background-color: var(--blue);
 }
 
 .resultListBoxes {
@@ -52,15 +31,65 @@ ul {
   grid-column: span 8;
 }
 
-.teamBox {
-  grid-column: span 4;
-  background-color: var(--lime-green);
+.lists {
+  text-align: left;
 }
 
 .box {
   margin: 5px;
-  padding: 5px;
   /*background: #A1D044;*/
+}
+
+/* COLORS */
+
+:root {
+    --light-grey: #E8E8E8;
+    --pink: #e82063;
+    --dark-pink: #cc1d57;
+    --blue: #00bed4;
+    --dark-blue: #00a5b8;
+    --lime-green: #8ac24a;
+    --dark-lime-green: #79ab41;
+    --yellow: #ff9a03;
+    --dark-yellow: #de8500;
+    --sea-green: #009685;
+    --dark-sea-green: #008273;
+    --white: #ffffff;
+    --dark-grey: #303030;
+    --black: #111;
+    --grey-type: #666;
+}
+
+.bg-limegreen {
+  background-color: var(--lime-green);
+}
+
+.bg-dark-limegreen {
+  background-color: var(--dark-lime-green)
+}
+
+.bg-pink {
+  background-color: var(--pink);
+}
+
+.bg-dark-pink {
+  background-color: var(--dark-pink);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+.bg-dark-blue {
+  background-color: var(--dark-blue);
+}
+
+.bg-sea-green {
+  background-color: var(--sea-green);
+}
+
+.bg-dark-sea-green {
+  background-color: var(--dark-sea-green);
 }
 
 /*
