@@ -2,6 +2,7 @@ body {
   background-color: var(--dark-grey);
   text-align: center;
   color: #ffffff;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 ul {

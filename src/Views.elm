@@ -11,7 +11,7 @@ view model =
     div [ class "wrapper" ]
         [ div [ class "left-col" ]
             [ div [ class "box bg-pink" ] [ accumulatedScoresHeader, accumulatedScores model.teams ]
-            , div [ class "box bg-limegreen" ] [ currentWinnerHeader, currentWinner "HC Team 5" ]
+            , div [ class "box bg-limegreen" ] [ currentWinnerHeader, currentWinner "Team 5" ]
             , div [ class "box bg-blue" ] [ houseRulesHeader, houseRules model.houseRules ]
             ]
         , div [ class "resultListBoxes" ] (List.map teamBox model.teams)
@@ -91,8 +91,7 @@ teamBox team =
         , div
             [ class "box-content" ]
             [ div [] [ scoreList team.scores ]
-            , div [] [ text "Total: ", totalScore team.scores ]
-            , div [] [ text "Average: ", averageScore team.scores ]
+            , div [] [ text "Gjennomsnitt: ", averageScore team.scores ]
             ]
         ]
 
