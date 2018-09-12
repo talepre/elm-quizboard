@@ -1,8 +1,8 @@
-module Views exposing (..)
+module Views exposing (accumulatedScoreLine, accumulatedScores, accumulatedScoresHeader, averageScore, currentWinner, currentWinnerHeader, houseRules, houseRulesHeader, resultLine, results, ruleLine, scoreList, teamBox, totalScore, view)
 
-import Models exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Models exposing (..)
 import Msgs exposing (..)
 
 
@@ -103,7 +103,7 @@ scoreList scores =
 
 resultLine : ScoreRecord -> Html Msg
 resultLine scores =
-    li [] [ text (toString scores.score) ]
+    li [] [ text (String.fromInt scores.score) ]
 
 
 averageScore : List ScoreRecord -> Html Msg
@@ -112,8 +112,8 @@ averageScore scores =
         |> List.map .score
         |> List.sum
         |> toFloat
-        |> (\a -> a / (toFloat (List.length scores)))
-        |> toString
+        |> (\a -> a / toFloat (List.length scores))
+        |> String.fromFloat
         |> text
 
 
@@ -122,5 +122,5 @@ totalScore scores =
     scores
         |> List.map .score
         |> List.sum
-        |> toString
+        |> String.fromInt
         |> text

@@ -1,4 +1,4 @@
-module Views exposing (..)
+module Views exposing (addScoreButton, addScoreField, addTeam, addTeamButton, addTeamInputField, chooseScore, chooseTeamForScore, configbar, navbar, saveScoreButton, scoreButton, teamButton, view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -48,10 +48,12 @@ configbar model =
     div [ class "configbar" ]
         [ if model.showAddTeamField then
             addTeamInputField
+
           else
             div [] []
         , if model.showAddScore then
             addScoreField model
+
           else
             div [] []
         ]
@@ -83,8 +85,9 @@ teamButton : Maybe Team -> Team -> Html Msg
 teamButton maybeChosenTeam team =
     case maybeChosenTeam of
         Just chosenTeam ->
-            if (chosenTeam.name == team.name) then
+            if chosenTeam.name == team.name then
                 div [ class "chosenButton", onClick (Msgs.TeamForScoreChosen team) ] [ text team.name ]
+
             else
                 div [ class "button", onClick (Msgs.TeamForScoreChosen team) ] [ text team.name ]
 
@@ -101,8 +104,9 @@ scoreButton : Maybe Score -> Score -> Html Msg
 scoreButton maybeChosenScore score =
     case maybeChosenScore of
         Just chosenScore ->
-            if (score == chosenScore) then
+            if score == chosenScore then
                 div [ class "chosenButton", onClick (Msgs.NewChosenScore score) ] [ text (toString score) ]
+
             else
                 div [ class "button", onClick (Msgs.NewChosenScore score) ] [ text (toString score) ]
 
@@ -112,4 +116,4 @@ scoreButton maybeChosenScore score =
 
 saveScoreButton : Html Msg
 saveScoreButton =
-    div [ class "button", onClick (Msgs.SaveScore) ] [ text "Save" ]
+    div [ class "button", onClick Msgs.SaveScore ] [ text "Save" ]

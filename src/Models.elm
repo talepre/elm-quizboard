@@ -1,4 +1,4 @@
-module Models exposing (..)
+module Models exposing (Date, Model, Rule, Score, ScoreRecord, Team, initialModel)
 
 
 initialModel : Model

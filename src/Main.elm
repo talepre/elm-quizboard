@@ -1,19 +1,19 @@
-module Main exposing (..)
+module Main exposing (init, main)
 
+import Browser exposing (..)
 import Models exposing (..)
-import Html exposing (..)
 import Msgs exposing (..)
 import Views exposing (..)
 
 
-init : ( Model, Cmd Msg )
-init =
+init : Int -> ( Model, Cmd Msg )
+init number =
     ( initialModel, Cmd.none )
 
 
-main : Program Never Model Msg
+main : Program Int Model Msg
 main =
-    program
+    element
         { init = init
         , view = view
         , update = update
