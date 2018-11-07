@@ -15,5 +15,5 @@ $ npm install -g elm elm-live
 Run elm application with hot-reload
 
 ```
-$ elm-live src/Main.elm --output=main.js --open
+$ elm-live src/Main.elm --open -- --output=main.js 
 ```

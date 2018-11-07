@@ -1,0 +1,10 @@
+{
+    "name": "elm-quizboard",
+    "description": "Quizboard",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": "https://github.com/user/project.git",
+    "devDependencies": {
+        "elm-live": "^3.2.2"
+    }
+}
